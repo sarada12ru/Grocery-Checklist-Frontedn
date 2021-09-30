@@ -1,0 +1,85 @@
+<div class="container mt-5">
+
+    <h2> 
+        <span style="cursor: pointer;" [routerLink]="[ '/admin/products' ]">
+            <i class="fa fa-arrow-left" aria-hidden="true"> </i>
+        </span> 
+        Add Product
+    </h2>
+    <hr>
+    <div class="mt-5 mb-5">
+        <form [formGroup]="pAddForm" (ngSubmit)="onSubmit()" novalidate>
+
+            <p>
+                <label for="productname">Product Name </label>
+                <input type="text" id="productname" class="form-control" name="productname" formControlName="productName">
+            </p>
+            <div *ngIf="f.productName.touched && f.productName.invalid" class="alert alert-danger">
+                <div *ngIf="f.productName.errors?.required">Product Name is required.</div>
+                <div *ngIf="f.productName.errors?.minlength">Product Name should be more than 3 character.</div>
+            </div>
+    
+    
+            <p>
+                <label for="shortdescription">Short description </label>
+                <input type="text" id="shortdescription" class="form-control" name="shortdescription" formControlName="shortDescription">
+            </p>
+            <div *ngIf="f.shortDescription.touched && f.shortDescription.invalid" class="alert alert-danger">
+                <div *ngIf="f.shortDescription.errors?.required">Short description is required.</div>
+                <div *ngIf="f.shortDescription.errors?.minlength">Short description should be more than 3 character.</div>
+            </div>
+    
+    
+            <p>
+                <label for="description">Description </label>
+                <textarea name="description" id="description" class="form-control" formControlName="description" cols="30" rows="3"></textarea>
+            </p>
+            <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                <div *ngIf="f.description.errors?.required">Description is required.</div>
+                <div *ngIf="f.description.errors?.minlength">Description should be more than 3 character.</div>
+            </div>
+    
+    
+            <p>
+                <label for="originalPrice">Original Price </label>
+                <input type="number" id="originalPrice" class="form-control" name="origionalPrice" formControlName="origionalPrice">
+            </p>
+            <div *ngIf="f.origionalPrice.touched && f.origionalPrice.invalid" class="alert alert-danger">
+                <div *ngIf="f.origionalPrice.errors?.required">Original Price is required.</div>
+            </div>
+    
+    
+            <p>
+                <label for="netsellingprice">Netselling Price </label>
+                <input type="number" id="netsellingprice" class="form-control" name="netsellingprice" formControlName="netSellingPrice">
+            </p>
+            <div *ngIf="f.netSellingPrice.touched && f.netSellingPrice.invalid" class="alert alert-danger">
+                <div *ngIf="f.netSellingPrice.errors?.required">NetSelling Price is required.</div>
+            </div>
+    
+            <p>
+                <label for="categoryid">Category Id </label>
+                <!-- <input type="number" id="categoryid" class="form-control" name="categoryId" formControlName="categoryId"> -->
+                <select name="categoryId" id="categoryid" class="form-control" formControlName="categoryId">
+                    <option [value]="item.id" *ngFor="let item of categories">{{ item.categoryName }}</option>
+                </select>
+            </p>
+            <div *ngIf="f.categoryId.touched && f.categoryId.invalid" class="alert alert-danger">
+                <div *ngIf="f.categoryId.errors?.required">Category Id is required.</div>
+            </div>
+    
+            <p>
+                <label for="image">Product image </label>
+                <input type="file" class="form-control" (change)="uploadImage($event)">
+            </p>
+            <div *ngIf="f.image.touched && f.image.invalid" class="alert alert-danger">
+                <div *ngIf="f.image.errors?.required">Product image is required.</div>
+            </div>
+    
+    
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-danger" type="reset">Cancel</button>
+        </form>
+    </div>
+    
+</div>

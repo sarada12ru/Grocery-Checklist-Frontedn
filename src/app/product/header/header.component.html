@@ -1,0 +1,12 @@
+<nav class="navbar navbar-light">
+    <div class="container">
+        <h1 class="navbar-brand" style="cursor: pointer;" [routerLink]="['/']" routerLinkActive="router-link-active" >Grocery Checklist</h1>
+        <span>
+            <i class="fa fa-heart color-red" style="font-size:24px" [routerLink]="['/checklist']" routerLinkActive="router-link-active" ></i>
+            <span class='badge badge-warning color-red'> {{ appService.checklist.length }} </span>
+
+            <i class="fa fa-shopping-cart color-green" style="font-size:24px" [routerLink]="['/bucket']" routerLinkActive="router-link-active" ></i>
+            <span class='badge badge-warning color-green'> {{ appService.bucketlist.length }} </span>
+        </span>
+    </div>
+</nav>
